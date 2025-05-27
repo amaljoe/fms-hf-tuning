@@ -480,7 +480,7 @@ def process_dataargs(
         train_args.packing,
         data_args.response_template,
         tokenizer,
-        False,
+        True,
         max_seq_length,
         data_args.instruction_template,
         is_padding_free=is_padding_free,
