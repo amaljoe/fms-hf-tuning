@@ -2,8 +2,7 @@ import random
 
 import numpy as np
 from datasets import Dataset
-from torch.utils.data import DataLoader
-from datasets import IterableDataset
+from torch.utils.data import DataLoader, IterableDataset
 
 import random
 from typing import List
