@@ -474,13 +474,13 @@ def process_dataargs(
     # Note: This check should not be removed.
     #       Its important to recompute this post handling to
     #       check if we already tokenized the dataset or not.
-    is_tokenized_dataset = is_pretokenized_dataset(train_dataset or eval_dataset)
+    # is_tokenized_dataset = is_pretokenized_dataset(train_dataset or eval_dataset)
 
     data_collator = get_data_collator(
         train_args.packing,
         data_args.response_template,
         tokenizer,
-        is_tokenized_dataset,
+        False,
         max_seq_length,
         data_args.instruction_template,
         is_padding_free=is_padding_free,
