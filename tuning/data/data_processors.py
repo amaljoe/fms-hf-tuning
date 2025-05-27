@@ -427,6 +427,7 @@ class DataPreProcessor:
             sample_datasets = False
 
         logger.info("Starting DataPreProcessor...")
+        all_datasets = []
         # Now Iterate over the multiple datasets provided to us to process
         for d in dataset_configs:
             logger.info("Loading %s", d.name)
@@ -459,7 +460,10 @@ class DataPreProcessor:
 
             # Append the processed datasets to the final dict
             all_datasetdicts.append(raw_datasets)
-
+            all_datasets.append(raw_datasets[splitName])
+        from tuning.utils.online_data_loader import OnlineDataLoader
+        online_dataset = OnlineDataLoader(all_datasets)
+        return online_dataset
         # This is a dict of { split: list[datasets] }
         final_datasets = {}
         for d in all_datasetdicts:
