@@ -140,8 +140,8 @@ class  OnlineDataLoader(IterableDataset):
             # tokenize
             if self.tokenizer:
                 if 'input' in batch:
-                    batch['input_ids'] = self.tokenizer(batch['input'], padding=True, truncation=True, return_tensors='pt')['input_ids']
-                    batch['attention_mask'] = self.tokenizer(batch['input'], padding=True, truncation=True, return_tensors='pt')['attention_mask']
+                    batch['input_ids'] = self.tokenizer(batch['input'], padding=True, truncation=True, return_tensors='pt')['input_ids'][0]
+                    batch['attention_mask'] = self.tokenizer(batch['input'], padding=True, truncation=True, return_tensors='pt')['attention_mask'][0]
 
             self.take_training_signals(batch, loss)
             yield batch
