@@ -462,7 +462,7 @@ class DataPreProcessor:
             all_datasetdicts.append(raw_datasets)
             all_datasets.append(raw_datasets[splitName])
         from tuning.utils.online_data_loader import OnlineDataLoader
-        online_dataset = OnlineDataLoader(all_datasets)
+        online_dataset = OnlineDataLoader(all_datasets, tokenizer=self.tokenizer)
         return online_dataset
         # This is a dict of { split: list[datasets] }
         final_datasets = {}
