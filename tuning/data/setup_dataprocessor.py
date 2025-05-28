@@ -489,8 +489,7 @@ def process_dataargs(
 
     dataset_kwargs = {}
     # For vision model tuning prepare_dataset is skipped.
-    if processor is not None:
-        dataset_kwargs["skip_prepare_dataset"] = True
+    dataset_kwargs["skip_prepare_dataset"] = True
 
     if isinstance(train_dataset, IterableDataset):
         train_args.accelerator_config = {"split_batches": True}

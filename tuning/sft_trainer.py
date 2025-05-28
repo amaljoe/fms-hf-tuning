@@ -381,7 +381,7 @@ def train(
         "dataset_text_field": data_args.dataset_text_field,
         "dataset_kwargs": dataset_kwargs,
     }
-    training_args = SFTConfig(**transformer_kwargs, **additional_args, dataset_kwargs={"skip_prepare_dataset": True})
+    training_args = SFTConfig(**transformer_kwargs, **additional_args)
 
     if train_args.enable_reduce_loss_sum:
         TrainerClass = SumLossSFTTrainer
