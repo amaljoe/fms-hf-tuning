@@ -381,7 +381,7 @@ def train(
         "dataset_text_field": data_args.dataset_text_field,
         "dataset_kwargs": dataset_kwargs,
     }
-    training_args = SFTConfig(**transformer_kwargs, **additional_args)
+    training_args = SFTConfig(**transformer_kwargs, **additional_args, dataset_kwargs={"skip_prepare_dataset": True})
 
     if train_args.enable_reduce_loss_sum:
         TrainerClass = SumLossSFTTrainer
@@ -397,7 +397,6 @@ def train(
         args=training_args,
         callbacks=trainer_callbacks,
         peft_config=peft_config,
-        dataset_kwargs={"skip_prepare_dataset": True}
     )
 
     # We track additional metrics and experiment metadata after trainer object creation
