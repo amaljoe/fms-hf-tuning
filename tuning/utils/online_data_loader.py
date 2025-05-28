@@ -115,6 +115,7 @@ class RLAgent:
 class  OnlineDataLoader(IterableDataset):
     def __init__(self, datasets, batch_size=1, shuffle=False, **kwargs):
         print("Initializing OnlineDataLoader")
+        self.tokenizer = kwargs.pop('tokenizer', None)
         self.num_domains = len(datasets)
         self.num_samples = sum([len(dataset) for dataset in datasets])
         self.data_loaders = [DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, **kwargs) for dataset in datasets]
@@ -136,6 +137,12 @@ class  OnlineDataLoader(IterableDataset):
             batch['metadata'] = {'domain_index': index}
             loss = 5 if index == 0 else 0
             self.take_training_signals(batch, loss)
+
+            # tokenize
+            if self.tokenizer:
+                if 'input' in batch:
+                    batch['input_ids'] = self.tokenizer(batch['input'], padding=True, truncation=True, return_tensors='pt')['input_ids']
+                    batch['attention_mask'] = self.tokenizer(batch['input'], padding=True, truncation=True, return_tensors='pt')['attention_mask']
             yield batch
 
     def __len__(self):
