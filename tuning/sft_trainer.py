@@ -397,6 +397,7 @@ def train(
         args=training_args,
         callbacks=trainer_callbacks,
         peft_config=peft_config,
+        dataset_kwargs={"skip_prepare_dataset": True}
     )
 
     # We track additional metrics and experiment metadata after trainer object creation
