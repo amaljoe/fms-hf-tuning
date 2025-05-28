@@ -152,7 +152,7 @@ class  OnlineDataLoader(IterableDataset):
     def take_training_signals(self, batch, loss):
         print("Taking training signals")
         domain_index = batch['metadata']['domain_index']
-        print("Sample: {}\tReward: {}\tProbabilities{}".format(batch, loss, self.rl_agent._probabilities))
+        print("Sampled from Domain: {}\tReward: {}\tProbabilities{}".format(domain_index, loss, self.rl_agent._probabilities))
         self.rl_agent.update(domain_index, reward=loss)
 
 #
